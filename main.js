@@ -2,8 +2,14 @@ const numeroSenha = document.querySelector('.parametro-senha__texto');
 let tamanhoSenha = 5;
 numeroSenha.textContent = tamanhoSenha;
 
+const letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVXYWZ';
+const letrasMinusculas = 'abcdefghijklmnopqrstuvxywz';
+const numeros = '0123456789';
+const simbolos = '!@%*?';
 const botoes = document.querySelectorAll('.parametro-senha__botao');
-
+const campoSenha = document.querySelector('#campo-senha');
+const checkbox = document.querySelectorAll('.checkbox');
+const forcaSenha = document.querySelector('.forca');
 botoes[0].onclick = diminuiTamanho;
 botoes[1].onclick = aumentaTamanho;
 
@@ -24,33 +30,27 @@ numeroSenha.textContent = tamanhoSenha;
 geraSenha();
 }
 
-const campoSenha = document.querySelector('#campo-senha');
-const checkbox = document.querySelectorAll('.checkbox');
 
-for (i = 0; i < checkbox.length; i++) {
-checkbox[i].onclick = geraSenha;
+for (i = 0; i < (document.querySelectorAll('.checkbox')).length; i++) {
+    (document.querySelectorAll('.checkbox'))[i].onclick = geraSenha;
 }
 
 
-const letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVXYWZ';
-const letrasMinusculas = 'abcdefghijklmnopqrstuvxywz';
-const numeros = '0123456789';
-const simbolos = '!@%*?';
 
 geraSenha();
 
 function geraSenha() {
 let alfabeto = '';
-if (checkbox[0].checked) {
+if ((document.querySelectorAll('.checkbox'))[0].checked) {
 alfabeto = alfabeto + letrasMaiusculas;
 }
-if (checkbox[1].checked) {
+if ((document.querySelectorAll('.checkbox'))[1].checked) {
 alfabeto = alfabeto + letrasMinusculas;
 }
-if (checkbox[2].checked) {
+if ((document.querySelectorAll('.checkbox'))[2].checked) {
 alfabeto = alfabeto + numeros;
 }
-if (checkbox[3].checked) {
+if ((document.querySelectorAll('.checkbox'))[3].checked) {
 alfabeto = alfabeto + simbolos;
 }
 console.log(alfabeto);
@@ -60,5 +60,11 @@ let numeroAleatorio = Math.random() * alfabeto.length;
 numeroAleatorio = Math.floor(numeroAleatorio);
 senha = senha + alfabeto[numeroAleatorio];
 }
-campoSenha.value = senha;
+ campoSenha.value = senha;
+ classificaSenha();
+}
+
+function classificaSenha(){forcaSenha.classList.remove('fraca','media','forte');
+forcaSenha.classList.add('forte');
+
 }
